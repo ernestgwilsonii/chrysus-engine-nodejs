@@ -1,0 +1,30 @@
+{
+  "name": "generic-chrysus-engine",
+  "version": "1.0.0",
+  "description": "Generic Chrysus Engine",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ernestgwilsonii/chrysus-engine-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ernestgwilsonii/chrysus-engine-nodejs/issues"
+  },
+  "homepage": "https://github.com/ernestgwilsonii/chrysus-engine-nodejs",
+  "keywords": ["chrysus", "bots", "chatops", "slack", "mqtt", "redis", "sqs", "iot"],
+  "author": {
+    "email": "ErnestGWilsonII@gmail.com",
+    "name": "Ernest G. Wilson II",
+    "url": "https://github.com/ernestgwilsonii"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "sqs-consumer": "^5.4.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
