@@ -14,7 +14,16 @@
     "url": "https://github.com/ernestgwilsonii/chrysus-engine-nodejs/issues"
   },
   "homepage": "https://github.com/ernestgwilsonii/chrysus-engine-nodejs",
-  "keywords": ["chrysus", "bots", "chatops", "slack", "mqtt", "redis", "sqs", "iot"],
+  "keywords": [
+    "chrysus",
+    "bots",
+    "chatops",
+    "slack",
+    "mqtt",
+    "redis",
+    "sqs",
+    "iot"
+  ],
   "author": {
     "email": "ErnestGWilsonII@gmail.com",
     "name": "Ernest G. Wilson II",

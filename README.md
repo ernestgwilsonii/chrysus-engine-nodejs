@@ -19,10 +19,10 @@ docker images
 #docker rm chrysus-engine
 
 # Manual DEV Testing
-export SNS_QUEUE='https://sqs.eu-west-1.amazonaws.com/account-id/queue-name'
+export SQS_QUEUE='https://sqs.eu-west-1.amazonaws.com/account-id/queue-name'
 export AWS_ACCESS_KEY_ID='blah'
 export AWS_SECRET_ACCESS_KEY='blah'
-node app.js
+node sqsExample.js
 ```
 
 ### Basic Chrysus Message Format
