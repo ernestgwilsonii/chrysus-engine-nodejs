@@ -45,7 +45,9 @@ class Chrysus {
         resolve(res);
       }
       // Unknown
-      reject("CRITICAL: Chrysus Engine type: unknown! Try using one of: mqtt, redis or sqs");
+      reject(
+        "CRITICAL: Chrysus Engine type: unknown! Try using one of: mqtt, redis or sqs"
+      );
     });
   }
 }

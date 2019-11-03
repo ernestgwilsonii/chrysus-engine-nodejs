@@ -30,6 +30,7 @@ node sqsExample.js
 {
   "message": {
     "chrysus": "1.0.0",
+    "meta": {},
     "tasks": [
       {
         "taskName": "someTask",
