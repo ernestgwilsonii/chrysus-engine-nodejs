@@ -41,7 +41,7 @@ class Chrysus {
       if (this.type === "sqs") {
         const { sqsSubscriber } = require("./lib/sqsSubscriber");
         sqsSubscriber(this.params);
-        console.log("Chrysus engine type: " + res.type);
+        console.log("Chrysus Engine type: " + res.type);
         resolve(res);
       }
       // Unknown
