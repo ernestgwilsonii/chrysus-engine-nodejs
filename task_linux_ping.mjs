@@ -13,7 +13,3 @@ export async function task(target) {
     console.error(error);
   }
 }
-
-//export { task_linux_ping as myDefault };
-
-//module.exports.task_linux_ping = task_linux_ping;
