@@ -10,8 +10,8 @@
 async function taskLauncher(target, taskName) {
   try {
     if (target) {
-      taskPath = "./" + taskName+ ".mjs";
-      
+      taskPath = "./" + taskName + ".mjs";
+
       console.log("taskLauncher - taskPath: " + taskPath);
       // console.log("taskLauncher - target: " + target);
       console.log("taskLauncher - taskName: " + taskName);
