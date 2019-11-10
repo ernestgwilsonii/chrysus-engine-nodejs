@@ -31,6 +31,6 @@ test("Passing in an unknown type should reject!", () => {
   const chrysus = new Chrysus(type, params);
   expect.assertions(1);
   return expect(chrysus.engine()).rejects.toEqual(
-    "CRITICAL: Chrysus Engine type: unknown! Try using one of: mqtt, redis or sqs"
+    "CRITICAL: Chrysus client type: unknown! Try using one of: mqtt, redis or sqs"
   );
 });
