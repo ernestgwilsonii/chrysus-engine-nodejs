@@ -14,7 +14,7 @@ async function taskLauncher(target, taskName) {
 
       const { task } = await require(taskPath);
       let res = await task(target);
-      // console.log("output: " + JSON.stringify(res));
+      // console.log("res: " + JSON.stringify(res));
       return res;
     }
   } catch (error) {
@@ -27,7 +27,7 @@ async function launchIt(target, taskName) {
     if (target) {
       //console.log("launchIt - taskName: " + taskName + " target: " + target);
       let res = await taskLauncher(target, taskName);
-      console.log("output: " + JSON.stringify(res));
+      console.log("res: " + JSON.stringify(res));
     }
   } catch (error) {
     console.error(error);
