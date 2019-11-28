@@ -1,0 +1,23 @@
+{
+  "message": {
+    "chrysus": "1.0.0",
+    "tasks": [
+      {
+        "taskName": "someTask",
+        "taskVersion": "1.0.0",
+        "taskDetails": {
+          "someOptionalTaskKey1": "someOptionalTaskValue1"
+        },
+        "outputs": [
+          {
+            "outputName": "output_console",
+            "outputVersion": "1.0.0",
+            "outputDetails": {
+              "someOptionalOutputKey1": "someOptionalOutputValue1"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

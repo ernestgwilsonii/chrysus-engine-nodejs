@@ -1,0 +1,53 @@
+{
+  "message": {
+    "chrysus": "1.0.0",
+    "tasks": [
+      {
+        "taskName": "task_linux_ping",
+        "taskVersion": "1.0.0",
+        "taskDetails": {
+          "count": 4
+        },
+        "outputs": [
+          {
+            "outputName": "output_console",
+            "outputVersion": "1.0.0",
+            "outputDetails": {
+              "verbose": true
+            }
+          },
+          {
+            "outputName": "output_slack",
+            "outputVersion": "1.0.0",
+            "outputDetails": {
+              "webHook": "blah"
+            }
+          }
+        ]
+      },
+      {
+        "taskName": "task_linux_trace",
+        "taskVersion": "1.0.0",
+        "taskDetails": {
+          "count": 4
+        },
+        "outputs": [
+          {
+            "outputName": "output_console",
+            "outputVersion": "1.0.0",
+            "outputDetails": {
+              "verbose": true
+            }
+          },
+          {
+            "outputName": "output_slack",
+            "outputVersion": "1.0.0",
+            "outputDetails": {
+              "webHook": "blah"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

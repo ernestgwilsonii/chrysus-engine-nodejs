@@ -1,0 +1,39 @@
+{
+  "message": {
+    "chrysus": "1.0.0",
+    "tasks": [
+      {
+        "taskName": "task_linux_ping",
+        "taskVersion": "1.0.0",
+        "taskDetails": {
+          "count": 4
+        },
+        "outputs": [
+          {
+            "outputName": "output_console",
+            "outputVersion": "1.0.0",
+            "outputDetails": {
+              "verbose": true
+            }
+          }
+        ]
+      },
+      {
+        "taskName": "task_linux_trace",
+        "taskVersion": "1.0.0",
+        "taskDetails": {
+          "maxHops": 30
+        },
+        "outputs": [
+          {
+            "outputName": "output_console",
+            "outputVersion": "1.0.0",
+            "outputDetails": {
+              "verbose": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
