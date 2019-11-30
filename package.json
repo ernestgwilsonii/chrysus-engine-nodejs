@@ -33,7 +33,6 @@
   "license": "MIT",
   "dependencies": {
     "child-process-promise": "^2.2.1",
-    "events": "^3.0.0",
     "sqs-consumer": "^5.4.0",
     "uuid": "^3.3.3"
   },
