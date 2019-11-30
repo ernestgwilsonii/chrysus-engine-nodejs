@@ -40,10 +40,10 @@
             }
           },
           {
-            "outputName": "output_slack",
+            "outputName": "output_slackWebhook",
             "outputVersion": "1.0.0",
             "outputDetails": {
-              "webHook": "blah"
+              "url": "https://hooks.slack.com/services/Xxxxxxxxx/Yyyyyyyyy/Zzzzzzzzzzzzzzzzzzzzzz"
             }
           }
         ]

@@ -32,6 +32,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@slack/webhook": "^5.0.2",
     "child-process-promise": "^2.2.1",
     "sqs-consumer": "^5.4.0",
     "uuid": "^3.3.3"

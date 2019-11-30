@@ -6,16 +6,10 @@
         "taskName": "task_linux_ping",
         "taskVersion": "1.0.0",
         "taskDetails": {
+          "target": "8.8.8.8",
           "count": 4
         },
         "outputs": [
-          {
-            "outputName": "output_console",
-            "outputVersion": "1.0.0",
-            "outputDetails": {
-              "verbose": true
-            }
-          },
           {
             "outputName": "output_slackWebhook",
             "outputVersion": "1.0.0",
