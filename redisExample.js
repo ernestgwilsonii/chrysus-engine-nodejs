@@ -1,3 +1,4 @@
+//@ts-check
 // Example: Launching a Chrysus Engine using Redis pub/sub
 const { Chrysus } = require("./Chrysus");
 

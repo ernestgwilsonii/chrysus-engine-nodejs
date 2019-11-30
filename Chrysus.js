@@ -1,8 +1,9 @@
+//@ts-check
 /**
  * @summary Chrysus Engine - Creates a Chrysus client instance based on the type specified
  * @param {string} type - is required like: "sqs" or "redis"
- * @param {object} params - is required and is based on the type like: { sqsQueue, awsAccessKeyId, awsSecretAccessKey} or { redisHost, redisPort, redisPass, redisChan } or { mqttHost, mmqttPort, mqttPass, mqttChan }
- * @returns {object} res - {}
+ * @param {object} params - is required and is based on the type like: { sqsQueue, awsAccessKeyId, awsSecretAccessKey} or { redisHost, redisPort, redisPass, redisChan } or { mqttHost, mqttPort, mqttPass, mqttChan }
+ * @returns Promise<object> res - returns the results
  * */
 class Chrysus {
   constructor(type, params) {
@@ -25,8 +26,8 @@ class Chrysus {
     return new Promise((resolve, reject) => {
       // MQTT
       if (this.type === "mqtt") {
-        const { redisSubscriber } = require("./lib/mqttSubscriber");
-        redisSubscriber(this.params);
+        const { mqttSubscriber } = require("./lib/mqttSubscriber");
+        mqttSubscriber(this.params);
         console.log("Chrysus client type: " + res.type);
         resolve(res);
       }

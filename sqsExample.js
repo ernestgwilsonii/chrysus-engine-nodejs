@@ -1,3 +1,4 @@
+//@ts-check
 // Example: Launching a Chrysus Engine using SQS pub/sub
 const { Chrysus } = require("./Chrysus");
 
