@@ -26,7 +26,7 @@
         ]
       },
       {
-        "taskName": "task_linux_trace",
+        "taskName": "task_linux_traceroute",
         "taskVersion": "1.0.0",
         "taskDetails": {
           "count": 4
