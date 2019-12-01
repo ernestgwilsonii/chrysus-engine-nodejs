@@ -18,11 +18,17 @@ docker images
 #docker run --name chrysus-engine -it ernestgwilsonii/chrysus-engine-rpi-arm-nodejs:1.0.0 sh
 #docker rm chrysus-engine
 
-# Manual DEV Testing
+# Manual DEV Testing SQS
 export SQS_QUEUE='https://sqs.eu-west-1.amazonaws.com/account-id/queue-name'
 export AWS_ACCESS_KEY_ID='blah'
 export AWS_SECRET_ACCESS_KEY='blah'
 node sqsExample.js
+
+# Manual DEV Testing Redis
+export CHRYSUS_REDISHOST=127.0.0.1
+export CHRYSUS_REDISPORT=6379
+export CHRYSUS_REDISCHAN=incoming
+node redisExample.js
 ```
 
 ### Basic Chrysus Message Format
