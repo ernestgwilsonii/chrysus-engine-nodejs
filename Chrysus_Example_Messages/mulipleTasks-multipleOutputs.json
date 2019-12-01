@@ -6,6 +6,7 @@
         "taskName": "task_linux_ping",
         "taskVersion": "1.0.0",
         "taskDetails": {
+          "target": "8.8.8.8",
           "count": 4
         },
         "outputs": [
@@ -17,10 +18,10 @@
             }
           },
           {
-            "outputName": "output_slack",
+            "outputName": "output_slackWebhook",
             "outputVersion": "1.0.0",
             "outputDetails": {
-              "webHook": "blah"
+              "url": "https://hooks.slack.com/services/Xxxxxxxxx/Yyyyyyyyy/Zzzzzzzzzzzzzzzzzzzzzz"
             }
           }
         ]
@@ -29,7 +30,8 @@
         "taskName": "task_linux_traceroute",
         "taskVersion": "1.0.0",
         "taskDetails": {
-          "count": 4
+          "target": "8.8.8.8",
+          "max_ttl": 30
         },
         "outputs": [
           {

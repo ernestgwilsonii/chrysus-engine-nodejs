@@ -6,6 +6,7 @@
         "taskName": "task_linux_ping",
         "taskVersion": "1.0.0",
         "taskDetails": {
+          "target": "8.8.8.8",
           "count": 4
         },
         "outputs": [
