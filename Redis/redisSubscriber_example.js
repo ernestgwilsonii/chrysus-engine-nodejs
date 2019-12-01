@@ -1,6 +1,7 @@
 const subscriber = require("redis").createClient();
 
-subscriber.on("message", function(channel, message) {
+subscriber.on("message", (channel, message) => {
+  console.log(channel);
   console.log(message);
 });
 
