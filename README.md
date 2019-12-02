@@ -28,6 +28,7 @@ node sqsExample.js
 export CHRYSUS_REDISHOST=127.0.0.1
 export CHRYSUS_REDISPORT=6379
 export CHRYSUS_REDISCHAN=incoming
+export CHRYSUS_REDISPASS=yourpassword
 node redisExample.js
 ```
 

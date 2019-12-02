@@ -3,6 +3,12 @@
 ```
 # Start a local Redis for testing
 docker run --name redis -p 6379:6379 -d redis
+docker ps
+
+# Or with a password set in docker-compose.yml
+cd Redis
+docker-compose up -d
+docker ps
 
 # Optional Redis Commander
 sudo npm install -g redis-commander
