@@ -1,4 +1,4 @@
-### Redis development notes
+# Redis development notes
 
 ```
 # Start a local Redis for testing
