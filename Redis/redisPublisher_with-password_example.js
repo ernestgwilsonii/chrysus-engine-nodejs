@@ -1,9 +1,9 @@
 const redis = require("redis"); // https://www.npmjs.com/package/redis
 
 let client = redis.createClient({
-  port: process.env.CHRYSUS_REDISPORT || 6379,
-  host: process.env.CHRYSUS_REDISHOST || "127.0.0.1",
-  password: process.env.CHRYSUS_REDISPASS
+  port: process.env.CHRYSUS_REDIS_PORT || 6379,
+  host: process.env.CHRYSUS_REDIS_HOST || "127.0.0.1",
+  password: process.env.CHRYSUS_REDIS_PASS
   // optional, if using SSL - use `fs.readFile[Sync]` or another method to bring these values in
   // tls: {
   //   key: stringValueOfKeyFile,

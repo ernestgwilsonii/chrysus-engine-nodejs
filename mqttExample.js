@@ -1,14 +1,15 @@
-// Example: Launching a Chrysus Engine using SQS pub/sub
+// Example: Launching a Chrysus Engine using MQTT pub/sub
 const { Chrysus } = require("./Chrysus");
 
 // Choose a valid Chrysus type
-let type = "sqs";
+let type = "mqtt";
 
 // Define the required parameters based on the specific type
 let params = {
-  sqsQueue: process.env.CHRYSUS_SQS_QUEUE,
-  awsAccessKeyId: process.env.CHRYSUS_SQS_QUEUE,
-  awsSecretAccessKey: process.env.CHRYSUS_AWS_SECRET_ACCESS_KEY
+  host: process.env.CHRYSUS_MQTT_HOST,
+  port: process.env.CHRYSUS_MQTT_PORT,
+  protocolId: process.env.CHRYSUS_MQTT_PROTOCOL_ID,
+  topic: process.env.CHRYSUS_MQTT_TOPIC,
 };
 
 // Create an instance of Chrysus

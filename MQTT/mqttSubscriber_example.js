@@ -1,6 +1,6 @@
 const mqtt = require("mqtt"); // https://www.npmjs.com/package/mqtt
 
-let mqttTopic = "Chan19";
+let mqttTopic = "incoming";
 let options = {
   protocolId: "MQTT",
   host: "127.0.0.1",

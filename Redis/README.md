@@ -1,6 +1,6 @@
 # Redis development notes
 
-```
+```bash
 # Start a local Redis for testing
 docker run --name redis -p 6379:6379 -d redis
 docker ps

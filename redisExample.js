@@ -7,17 +7,17 @@ let type = "redis";
 // Define the required parameters based on the specific type
 // Redis without a password
 // let params = {
-//   redisHost: process.env.CHRYSUS_REDISHOST,
-//   redisPort: process.env.CHRYSUS_REDISPORT,
-//   redisChan: process.env.CHRYSUS_REDISCHAN
+//   redisHost: process.env.CHRYSUS_REDIS_HOST,
+//   redisPort: process.env.CHRYSUS_REDIS_PORT,
+//   redisChan: process.env.CHRYSUS_REDIS_CHAN
 // };
 
 // Or with a Redis password:
 let params = {
-  redisHost: process.env.CHRYSUS_REDISHOST,
-  redisPort: process.env.CHRYSUS_REDISPORT,
-  redisChan: process.env.CHRYSUS_REDISCHAN,
-  redisPass: process.env.CHRYSUS_REDISPASS,
+  redisHost: process.env.CHRYSUS_REDIS_HOST,
+  redisPort: process.env.CHRYSUS_REDIS_PORT,
+  redisChan: process.env.CHRYSUS_REDIS_CHAN,
+  redisPass: process.env.CHRYSUS_REDIS_PASS,
 };
 
 // Create an instance of Chrysus

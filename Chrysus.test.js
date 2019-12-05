@@ -13,9 +13,9 @@ test("Hello World from Jest!", () => {
 test("Passing in an unknown type should fail!", () => {
   let type = "unknown"; // <--This type is unknown!
   let params = {
-    sqsQueue: process.env.SQS_QUEUE,
-    awsAccessKeyId: process.env.SQS_QUEUE,
-    awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    sqsQueue: process.env.CHRYSUS_SQS_QUEUE,
+    awsAccessKeyId: process.env.CHRYSUS_SQS_QUEUE,
+    awsSecretAccessKey: process.env.CHRYSUS_AWS_SECRET_ACCESS_KEY
   };
   const chrysus = new Chrysus(type, params);
   expect(chrysus.engine()).toThrowErrorMatchingSnapshot();
@@ -24,9 +24,9 @@ test("Passing in an unknown type should fail!", () => {
 test("Passing in an unknown type should reject!", () => {
   let type = "unknown"; // <--This type is unknown!
   let params = {
-    sqsQueue: process.env.SQS_QUEUE,
-    awsAccessKeyId: process.env.SQS_QUEUE,
-    awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    sqsQueue: process.env.CHRYSUS_SQS_QUEUE,
+    awsAccessKeyId: process.env.CHRYSUS_SQS_QUEUE,
+    awsSecretAccessKey: process.env.CHRYSUS_AWS_SECRET_ACCESS_KEY
   };
   const chrysus = new Chrysus(type, params);
   expect.assertions(1);

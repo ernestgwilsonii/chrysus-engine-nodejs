@@ -1,9 +1,10 @@
-### chrysus-engine-nodejs
+# chrysus-engine-nodejs
+
 Chrysus Engine NodeJS
 
 - REF: https://github.com/BBC/sqs-consumer
 
-```
+```bash
 # Build x86_64
 time docker build -t ernestgwilsonii/chrysus-engine-x86-64-nodejs:1.0.0 -f Dockerfile .
 docker images
@@ -19,17 +20,24 @@ docker images
 #docker rm chrysus-engine
 
 # Manual DEV Testing SQS
-export SQS_QUEUE='https://sqs.eu-west-1.amazonaws.com/account-id/queue-name'
-export AWS_ACCESS_KEY_ID='blah'
-export AWS_SECRET_ACCESS_KEY='blah'
+export CHRYSUS_SQS_QUEUE='https://sqs.eu-west-1.amazonaws.com/account-id/queue-name'
+export CHRYSUS_AWS_ACCESS_KEY_ID='blah'
+export CHRYSUS_AWS_SECRET_ACCESS_KEY='blah'
 node sqsExample.js
 
 # Manual DEV Testing Redis
-export CHRYSUS_REDISHOST=127.0.0.1
-export CHRYSUS_REDISPORT=6379
-export CHRYSUS_REDISCHAN=incoming
-export CHRYSUS_REDISPASS=yourpassword
+export CHRYSUS_REDIS_HOST=127.0.0.1
+export CHRYSUS_REDIS_PORT=6379
+export CHRYSUS_REDIS_CHAN=incoming
+export CHRYSUS_REDIS_PASS=yourpassword
 node redisExample.js
+
+# Manual DEV Testing MQTT
+export CHRYSUS_MQTT_HOST=127.0.0.1
+export CHRYSUS_MQTT_PORT=1883
+export CHRYSUS_MQTT_PROTOCOL_ID=MQTT
+export CHRYSUS_MQTT_TOPIC=incoming
+node mqttExample.js
 ```
 
 ### Basic Chrysus Message Format

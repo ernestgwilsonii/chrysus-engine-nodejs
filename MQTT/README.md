@@ -1,6 +1,6 @@
 # MQTT development notes
 
-```
+```bash
 # Start a local Mosquitto MQTT for testing
 # REF: https://hub.docker.com/_/eclipse-mosquitto
 docker run --name mqtt -p 1883:1883 -p 9001:9001 -d eclipse-mosquitto
