@@ -1,8 +1,4 @@
-# chrysus-engine-nodejs
-
-Chrysus Engine NodeJS
-
-- REF: https://github.com/BBC/sqs-consumer
+# Chrysus Engine Node.js
 
 ```bash
 # Build x86_64
@@ -40,12 +36,12 @@ export CHRYSUS_MQTT_TOPIC=incoming
 node mqttExample.js
 ```
 
-### Basic Chrysus Message Format
-```
+## Basic Chrysus Message Format
+
+```json
 {
   "message": {
     "chrysus": "1.0.0",
-    "meta": {},
     "tasks": [
       {
         "taskName": "someTask",
