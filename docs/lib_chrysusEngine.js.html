@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: lib/chrysusEngine.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: lib/chrysusEngine.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+const EventEmitter = require("events"); // https://nodejs.org/api/events.html
+const uuidv1 = require("uuid/v1"); // Based on time v1 - https://www.npmjs.com/package/uuid
+const uuidv4 = require("uuid/v4"); // Random v4 - https://www.npmjs.com/package/uuid
+const { taskLauncher } = require("./taskLauncher");
+const { outputProcessor } = require("./outputProcessor");
+const { sleep } = require("./sleep");
+const chrysusEmitter = new EventEmitter();
+
+/**
+ * @summary ChrysusEngine - processes valid Chrysus Messages then performs each task and sends the results to each output
+ * @param {object} message - is required and must be a valid Chrysus Message
+ * @returns {object} res - returns the original message along with a chrysusStatus, chrysusStatusMessage and chrysusMessageId
+ * */
+class ChrysusEngine {
+  constructor(message) {
+    if (typeof message == "object") {
+      this.message = message;
+    } else {
+      throw "CRITICAL: A ChrysusEngine message object is required! Did you pass in a valid (properly formatted) Chrysus Message?";
+    }
+  }
+
+  chrysusMessageReceived(message) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // await sleep(35000); // Simulate some processing delay!
+        // console.log("ChrysusEngine chrysusMessageReceived message:\n" + JSON.stringify(message, null, 2));
+
+        // Give every incoming Chrysus Message a unique id for logging
+        let chrysusMsgId = await uuidv1();
+
+        // Process the Chrysus Message
+        if (message) {
+          // Copy the message
+          let res = { ...message };
+
+          // Set the Chrysus Status for logging
+          res.chrysusStatus = "RECEIVED";
+          res.chrysusStatusMessage =
+            "ChrysusEngine: Chrysus Message received: " + chrysusMsgId;
+          res.chrysusMessageId = chrysusMsgId;
+          res.message.meta.chrysusMessageId = chrysusMsgId;
+          res.message.meta.chrysusStatus = res.chrysusStatus;
+          // await sleep(6000); // Simulate some processing delay!
+          // console.log("chrysusMessageReceived:\n" + JSON.stringify(res, null, 2));
+          await chrysusEmitter.emit("callTasksSplitter", res); // Send the message to the Chrysus Tasks Splitter
+          resolve(res);
+        }
+        let err = {};
+        err.chrysusStatusMessage =
+          "CRITICAL: ChrysusEngine.chrysusMessageReceived - No message!";
+        err.chrysusStatus = "FAILURE";
+        err.chrysusMessageId = chrysusMsgId;
+        reject(err);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  }
+}
+
+// Loop over the tasks array and send each individual task to the Chrysus Task Launcher
+chrysusEmitter.on("callTasksSplitter", async chrysusMessage => {
+  try {
+    // await sleep(3000); // Simulate some processing delay!
+    // console.log("ChrysusEngine callTasksSplitter chrysusMessage:\n" + JSON.stringify(chrysusMessage, null, 2));
+
+    // Set the Chrysus Status for logging
+    chrysusMessage.message.meta.chrysusStatus = "TASK_SPLITTER";
+
+    // Copy the array, don't mutate the original
+    let tasksArray = [ ...chrysusMessage.message.tasks ];
+    // console.log("ChrysusEngine tasksArray:\n" + JSON.stringify(tasksArray, null, 2));
+
+    // Create individual atomic tasks
+    for (let thisTask of tasksArray) {
+      // await sleep(3000); // Simulate some processing delay!
+
+      // Copy the meta data
+      thisTask.meta = { ...chrysusMessage.message.meta };
+
+      // Give each task a unique id for logging
+      thisTask.meta.chrysusTaskId = await uuidv4();
+
+      // console.log("ChrysusEngine thisTask:\n" + JSON.stringify(thisTask, null, 2));
+      await chrysusEmitter.emit("callTaskLauncher", thisTask); // Send this task to the Chrysus Task Launcher
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+// Process each individual task using the Chrysus Task Launcher
+chrysusEmitter.on("callTaskLauncher", async chrysusTask => {
+  try {
+    // await sleep(2000); // Simulate some processing delay!
+    //console.log("ChrysusEngine callTaskLauncher chrysusTask:\n" + JSON.stringify(chrysusTask, null, 2));
+
+    // Set the Chrysus Status for logging
+    chrysusTask.meta.chrysusStatus = "TASK_LAUNCHER";
+
+    // Launch each task
+    let taskResults = await taskLauncher(chrysusTask);
+    // await sleep(2000); // Simulate some processing delay!
+    // console.log("ChrysusEngine taskResults:\n" + JSON.stringify(taskResults, null, 2));
+    await chrysusEmitter.emit("callOutputProcessor", taskResults); // Send the results to the Chrysus Output Processor
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+// Send each individual task results to the Chrysus Output Processor
+chrysusEmitter.on("callOutputProcessor", async chrysusTaskResults => {
+  try {
+    // console.log("ChrysusEngine callOutputProcessor chrysusTaskResults:\n" + JSON.stringify(chrysusTaskResults, null, 2));
+
+    //
+    for (let thisOutput of chrysusTaskResults.outputs) {
+      // console.log(thisOutput);
+      chrysusTaskResults.outputs = thisOutput;
+      // console.log("chrysusTaskResults:\n" + JSON.stringify(chrysusTaskResults, null, 2));
+
+      // Set the Chrysus Status for logging
+      chrysusTaskResults.meta.chrysusStatus = "OUTPUT_PROCESSOR";
+
+      // await sleep(2000); // Simulate some processing delay!
+      // console.log("ChrysusEngine chrysusTaskResults:\n" + JSON.stringify(chrysusTaskResults, null, 2));
+      let outputResults = await outputProcessor(chrysusTaskResults);
+      console.log(
+        "ChrysusEngine outputResults:\n" +
+          JSON.stringify(outputResults, null, 2)
+      );
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+module.exports.ChrysusEngine = ChrysusEngine;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Chrysus Documentation</a></h2><h3>Classes</h3><ul><li><a href="Chrysus.html">Chrysus</a></li><li><a href="ChrysusEngine.html">ChrysusEngine</a></li></ul><h3>Global</h3><ul><li><a href="global.html#chrysusMessageValidator">chrysusMessageValidator</a></li><li><a href="global.html#mqttSubscriber">mqttSubscriber</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#outputProcessor">outputProcessor</a></li><li><a href="global.html#redisSubscriber">redisSubscriber</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sqsSubscriber">sqsSubscriber</a></li><li><a href="global.html#task">task</a></li><li><a href="global.html#taskLauncher">taskLauncher</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Dec 06 2019 07:17:13 GMT-0500 (Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
