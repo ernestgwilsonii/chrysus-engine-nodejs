@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:12
+    hostname: postgres
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: postgres
+      POSTGRES_DB: chrysus
+    ports:
+      # PostgreSQL TCP 5432
+      - mode: host
+        target: 5432
+        published: 5432
+        protocol: tcp
+    networks:
+      - postgres-net1
+    # volumes:
+    #   - type: bind
+    #     source: ./pgdata
+    #     target: /var/lib/postgresql/data
+    deploy:
+      labels:
+        local.description: "PostgreSQL"
+      restart_policy:
+        condition: on-failure
+
+networks:
+  postgres-net1:
