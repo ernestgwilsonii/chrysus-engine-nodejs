@@ -2,6 +2,8 @@
 // REF: https://node-postgres.com/api/client
 const pg = require("pg"); // https://github.com/brianc/node-postgres
 let channel = "chrysus";
+const json = require("../Chrysus_Example_Messages/example_task_linux_ping.json"); // https://medium.com/@osiolabs/read-write-json-files-with-node-js-92d03cc82824
+let chrysusMessage = JSON.stringify(json);
 
 // PostgreSQL connection params
 let config = {
@@ -31,7 +33,8 @@ client.on("notification", async msg => {
 });
 
 // Send a notification
-client.query(`NOTIFY chrysus, 'Hello from PostgreSQL NOTIFY!'`);
+//client.query(`NOTIFY chrysus, 'Hello from PostgreSQL NOTIFY!'`);
+//client.query("NOTIFY chrysus, " + "'" + JSON.stringify(chrysusMessage) + "'");
 
 // Log any notices
 client.on("notice", async msg => {
