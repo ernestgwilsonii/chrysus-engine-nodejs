@@ -34,6 +34,14 @@ export CHRYSUS_MQTT_PORT=1883
 export CHRYSUS_MQTT_PROTOCOL_ID=MQTT
 export CHRYSUS_MQTT_TOPIC=incoming
 node mqttExample.js
+
+# Manual DEV Testing PostgreSQL
+export POSTGRESQL_HOST=127.0.0.1
+export POSTGRESQL_USERNAME=postgres
+export POSTGRESQL_PASSWORD=mysecretpassword
+export POSTGRESQL_DB=chrysus
+export POSTGRESQL_TABLE=events
+node postgresExample.js
 ```
 
 ## Basic Chrysus Message Format

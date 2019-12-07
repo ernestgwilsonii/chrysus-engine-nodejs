@@ -9,7 +9,7 @@ let params = {
   host: process.env.CHRYSUS_MQTT_HOST,
   port: process.env.CHRYSUS_MQTT_PORT,
   protocolId: process.env.CHRYSUS_MQTT_PROTOCOL_ID,
-  topic: process.env.CHRYSUS_MQTT_TOPIC,
+  topic: process.env.CHRYSUS_MQTT_TOPIC
 };
 
 // Create an instance of Chrysus
